@@ -1,6 +1,6 @@
 <p align="center">
 <kbd>
-  <img style="width:100px; height:100px; border-radius:20%;" class="rounded-image" src="./assets/icon.png" alt="logo" height="150"/></kbd>
+  <img style="width:100px; height:100px; border-radius:20%;" class="rounded-image" src="./assets/icon.jpg" alt="logo" height="150"/></kbd>
 </p>
 
 <h2 align="center">
@@ -20,7 +20,6 @@
 </div>
 
 [![Music PLayer](https://github.com/gionathas/music-player/assets/16454253/909c51e2-03f1-4fc8-94e6-56745f67fed8)](https://youtu.be/9CElrkFwiBU?si=PFgwCFDulxJJD2f4)
-
 
 ## What is this ?
 

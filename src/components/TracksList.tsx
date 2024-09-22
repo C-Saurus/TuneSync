@@ -30,28 +30,36 @@ export const TracksList = ({
 	const { activeQueueId, queueListWithContent, setQueueListContent } = useQueueStore(
 		(state) => state,
 	)
+
 	const { setActiveTrack, activeTrack } = useActiveTrack((state) => state)
-	const isPLaying = useIsPlaying()
+	const { playing } = useIsPlaying()
 	const handleTrackSelect = useCallback(
 		async (selectedTrack: Track) => {
+			//console.log('selectedTrack', selectedTrack)
 			setActiveTrack(selectedTrack)
 			const index = queueListWithContent[activeQueueId].findIndex(
 				(el: { title: string | undefined }) => el.title === selectedTrack.title,
 			)
+			console.log('index', index)
 			if (index === -1) {
 				const filteredList = queueListWithContent[activeQueueId].filter(
 					(el: { title: string | undefined }) => el.title !== selectedTrack.title,
 				)
 				setQueueListContent([...filteredList, selectedTrack], activeQueueId, queueListWithContent)
-				await TrackPlayer.add([selectedTrack])
+				await TrackPlayer.add(selectedTrack)
 
-				await TrackPlayer.pause()
-				await TrackPlayer.skip(queueListWithContent[activeQueueId].length - 1 || 0)
-				TrackPlayer.play()
+				// await TrackPlayer.pause()
+				// await TrackPlayer.skip(queueListWithContent[activeQueueId].length - 1 || 0)
+				await TrackPlayer.play()
 			} else {
-				await TrackPlayer.pause()
-				await TrackPlayer.skip(index || 0)
-				TrackPlayer.play()
+				//console.log('TrackPlayer', TrackPlayer)
+				try {
+					// await TrackPlayer.pause()
+					// await TrackPlayer.skip(index || 0)
+					await TrackPlayer.play()
+				} catch (error) {
+					console.log('error', error)
+				}
 			}
 		},
 		[activeQueueId, queueListWithContent, setActiveTrack, setQueueListContent],
@@ -62,15 +70,15 @@ export const TracksList = ({
 			return (
 				<TracksListItem
 					from={from}
-					isPLaying={isPLaying.playing}
+					isPLaying={playing}
 					isActive={isActive}
-					key={`${track?.filename}${track.url}${track.etag}${index}`}
+					key={`${track?.filename}${track.url}${track?.etag}${index}`}
 					track={track}
 					onTrackSelect={handleTrackSelect}
 				/>
 			)
 		},
-		[handleTrackSelect, activeTrack, from, isPLaying],
+		[handleTrackSelect, activeTrack, from, playing],
 	)
 
 	return (

@@ -28,6 +28,8 @@ const TracksListItemComponent = ({
 	const handlePress = useCallback(() => {
 		handleTrackSelect(track)
 	}, [handleTrackSelect, track])
+	console.log('isPLaying', isPLaying)
+	console.log('isActive', isActive)
 	if (!track) return null
 	return (
 		<TouchableHighlight onPress={handlePress}>

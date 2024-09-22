@@ -1,4 +1,4 @@
-import logo from '@/assets/icon.png'
+import logo from '@/assets/icon.jpg'
 import { router } from 'expo-router'
 import React from 'react'
 import { useTranslation } from 'react-i18next'

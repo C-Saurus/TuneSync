@@ -40,12 +40,13 @@ const SettingScreen = () => {
 					contentInsetAdjustmentBehavior="automatic"
 					style={{
 						paddingHorizontal: screenPadding.horizontal,
+						marginTop: 60,
 					}}
 				>
 					<Setting scrollEnabled={false} setting={setting} onMenuPress={handleMenuPress} />
 				</ScrollView>
 			</View>
-			<BottomUpPanel  isVisible={isPanelVisible} onClose={() => setPanelVisible(false)}>
+			<BottomUpPanel isVisible={isPanelVisible} onClose={() => setPanelVisible(false)}>
 				<LanguageModal></LanguageModal>
 			</BottomUpPanel>
 		</>
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 20,
+		marginTop: 60,
 		backgroundColor: '#fff',
 	},
 	header: {

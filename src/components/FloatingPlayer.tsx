@@ -34,7 +34,7 @@ export const FloatingPlayer = ({ style }: ViewProps) => {
 				<View style={styles.trackTitleContainer}>
 					<MovingText
 						style={styles.trackTitle}
-						text={`${activeTrack}  ${activeTrackObj.artist || ''}` ?? 'loading'}
+						text={`${activeTrack}  ${activeTrackObj.artist || ''}`}
 						animationThreshold={25}
 					/>
 				</View>

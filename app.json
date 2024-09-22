@@ -1,50 +1,34 @@
 {
-  "expo": {
-    "name": "TuneSync",
-    "slug": "TuneSync",
-    "version": "1.0.1",
-    "orientation": "portrait",
-    "userInterfaceStyle": "dark",
-    "scheme": "music-player",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.music.tunesync",
-      "icon": "./assets/icon.png",
-      "splash": {
-        "image": "./assets/splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#000"
-      },
-      "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ]
-      }
-    },
-    "android": {
-      "splash": {
-        "image": "./assets/splash.png",
-        "resizeMode": "contain",
-        "backgroundColor": "#000"
-      },
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000"
-      },
-      "package": "com.music.TuneSync"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-router"
-    ],
-    "experiments": {
-      "typedRoutes": true,
-      "tsconfigPaths": true
-    }
-  }
+	"expo": {
+		"name": "TuneSync",
+		"slug": "TuneSync",
+		"version": "1.0.1",
+		"orientation": "portrait",
+		"userInterfaceStyle": "dark",
+		"scheme": "music-player",
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.jpg",
+				"backgroundColor": "#000"
+			},
+			"package": "com.music.TuneSync"
+		},
+		"web": {
+			"favicon": "./assets/favicon.jpg"
+		},
+		"plugins": ["expo-router"],
+		"experiments": {
+			"typedRoutes": true,
+			"tsconfigPaths": true
+		},
+		"extra": {
+			"eas": {
+				"projectId": "bb42213c-c813-416e-b265-8b4c6e0cffbf"
+			}
+		}
+	}
 }

@@ -15,7 +15,7 @@ import { useIsFocused } from '@react-navigation/native'
 import { Stack } from 'expo-router'
 import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ActivityIndicator, Text, View } from 'react-native'
+import { View } from 'react-native'
 import TrackPlayer from 'react-native-track-player'
 let currentAbortController: AbortController | null = null
 const SongsScreenLayout = () => {
@@ -37,6 +37,7 @@ const SongsScreenLayout = () => {
 		setActiveQueueId(activeQueueId)
 	}, [activeQueueId, setActiveQueueId, setTracks, tracksMap])
 	const refreshLibrary = useCallback(async () => {
+		console.log('COME')
 		try {
 			// 如果之前的请求存在且未完成，取消它
 			if (currentAbortController) {
@@ -49,6 +50,7 @@ const SongsScreenLayout = () => {
 			setLoading({ loading: true, percentage: 0, current: '' })
 			const localIndexing = indexingList.filter((el: { from: string }) => el.from === 'local')
 			const webdavIndexing = indexingList.filter((el: { from: string }) => el.from !== 'local')
+			console.log('webdavIndexing', webdavIndexing)
 			const start = performance.now()
 			const localMusices = await indexingLocal(localIndexing, refresh)
 			const webdavMusices = await indexingWebdav(webdavIndexing, refresh)
@@ -62,6 +64,7 @@ const SongsScreenLayout = () => {
 
 			const formatedMusicTotal = {} as any
 			const songTitles = musicTotal?.map((el) => {
+				console.log('el', el)
 				const { title } = el
 				el.pendingMeta = true
 				formatedMusicTotal[title] = el
@@ -134,7 +137,7 @@ const SongsScreenLayout = () => {
 		update,
 		updateQueue,
 	])
-	const debouncedRefreshLibrary = useCallback(debounce(refreshLibrary, 0), [refreshLibrary])
+	const debouncedRefreshLibrary = debounce(refreshLibrary, 0)
 
 	useEffect(() => {
 		currentAbortController = new AbortController()
@@ -193,7 +196,7 @@ const SongsScreenLayout = () => {
 						headerRight: () => {
 							return (
 								<StopPropagation>
-									{loading ? (
+									{/* {loading ? (
 										<View>
 											<ActivityIndicator
 												style={{
@@ -216,9 +219,12 @@ const SongsScreenLayout = () => {
 										</View>
 									) : (
 										<HeaderMemu refreshLibrary={refreshLibrary}>
-											<Entypo name="dots-three-horizontal" size={18} color={colors.icon} />
+											<Entypo name="dots-three-horizontal" size={18} color={colors.errorColor} />
 										</HeaderMemu>
-									)}
+									)} */}
+									<HeaderMemu refreshLibrary={refreshLibrary}>
+										<Entypo name="dots-three-horizontal" size={28} color={colors.errorColor} />
+									</HeaderMemu>
 								</StopPropagation>
 							)
 						},

@@ -40,8 +40,41 @@ export const useLibraryStore = create<LibraryState>()(
 	persist(
 		(set) => {
 			return {
-				tracks: [],
-				tracksMap: {},
+				tracks: [
+					{
+						id: 1,
+						url: 'https://res.cloudinary.com/phuockaito/video/upload/v1657265009/audio/ox6fb6rwkhrcabcjbm6x.mp3', // Load media from the network
+						title: 'Alone',
+						artist: 'Alan Walker',
+						album: 'while(1<2)',
+						genre: 'Progressive House, Electro House',
+						date: '2014-05-20T07:00:00+00:00', // RFC 3339
+						artwork:
+							'https://res.cloudinary.com/phuockaito/image/upload/v1657265008/image_music/wg1aq20dyvoei3xxitg2.jpg', // Load artwork from the network
+					},
+					{
+						id: 2,
+						url: 'https://res.cloudinary.com/phuockaito/video/upload/v1657265329/audio/kqmkumgyxjq8209c6in7.mp3', // Load media from the network
+						title: 'Spectre',
+						artist: 'Alan Walker',
+						album: 'while(1<2)',
+						genre: 'Progressive House, Electro House',
+						date: '2014-05-20T07:00:00+00:00', // RFC 3339
+						artwork:
+							'https://res.cloudinary.com/phuockaito/image/upload/v1657265328/image_music/s9rsahac0duv6fiydulb.jpg', // Load artwork from the network
+					},
+				],
+				tracksMap: {
+					id: 1,
+					url: 'https://res.cloudinary.com/phuockaito/video/upload/v1657265009/audio/ox6fb6rwkhrcabcjbm6x.mp3', // Load media from the network
+					title: 'Alone',
+					artist: 'Alan Walker',
+					album: 'while(1<2)',
+					genre: 'Progressive House, Electro House',
+					date: '2014-05-20T07:00:00+00:00', // RFC 3339
+					artwork:
+						'https://res.cloudinary.com/phuockaito/image/upload/v1657265008/image_music/wg1aq20dyvoei3xxitg2.jpg', // Load artwork from the network
+				},
 				cache: {},
 				update: (id, data) => {
 					return set((state) => {
@@ -57,16 +90,50 @@ export const useLibraryStore = create<LibraryState>()(
 				},
 				reset: () => {
 					set({
-						tracks: [],
-						tracksMap: {},
+						tracks: [
+							{
+								id: 1,
+								url: 'https://res.cloudinary.com/phuockaito/video/upload/v1657265009/audio/ox6fb6rwkhrcabcjbm6x.mp3', // Load media from the network
+								title: 'Alone',
+								artist: 'Alan Walker',
+								album: 'while(1<2)',
+								genre: 'Progressive House, Electro House',
+								date: '2014-05-20T07:00:00+00:00', // RFC 3339
+								artwork:
+									'https://res.cloudinary.com/phuockaito/image/upload/v1657265008/image_music/wg1aq20dyvoei3xxitg2.jpg', // Load artwork from the network
+							},
+							{
+								id: 2,
+								url: 'https://res.cloudinary.com/phuockaito/video/upload/v1657265329/audio/kqmkumgyxjq8209c6in7.mp3', // Load media from the network
+								title: 'Spectre',
+								artist: 'Alan Walker',
+								album: 'while(1<2)',
+								genre: 'Progressive House, Electro House',
+								date: '2014-05-20T07:00:00+00:00', // RFC 3339
+								artwork:
+									'https://res.cloudinary.com/phuockaito/image/upload/v1657265328/image_music/s9rsahac0duv6fiydulb.jpg', // Load artwork from the network
+							},
+						],
+						tracksMap: {
+							id: 1,
+							url: 'https://res.cloudinary.com/phuockaito/video/upload/v1657265009/audio/ox6fb6rwkhrcabcjbm6x.mp3', // Load media from the network
+							title: 'Alone',
+							artist: 'Alan Walker',
+							album: 'while(1<2)',
+							genre: 'Progressive House, Electro House',
+							date: '2014-05-20T07:00:00+00:00', // RFC 3339
+							artwork:
+								'https://res.cloudinary.com/phuockaito/image/upload/v1657265008/image_music/wg1aq20dyvoei3xxitg2.jpg', // Load artwork from the network
+						},
 					})
 				},
 				setTracks: async (tracks: any) => {
-					set({
-						tracks: Object.values(tracks),
-						tracksMap: tracks,
-					})
+					// set({
+					// 	tracks: Object.values(tracks),
+					// 	tracksMap: tracks,
+					// })
 					set((state: any) => {
+						console.log('current', state.tracks)
 						return {
 							tracks: Object.values(tracks),
 							tracksMap: tracks,
@@ -124,6 +191,7 @@ export const useIndexStore = create<IndexState>()(
 				indexingList: [],
 				loading: false,
 				setIndexingList: (list: any) => {
+					console.log('listindex', list)
 					set({
 						indexingList: list,
 					})

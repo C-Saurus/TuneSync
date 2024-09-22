@@ -27,8 +27,10 @@ const SongsScreen = () => {
 	}
 	useEffect(() => {
 		setTracks(tracksMap)
+		console.log('trackMap', tracksMap)
 		return () => {}
-	}, [])
+	}, [setTracks, tracksMap])
+	console.log('tracks', tracks)
 	useEffect(() => {
 		if (init === 0) {
 			loadQueue()
@@ -49,7 +51,32 @@ const SongsScreen = () => {
 					// paddingTop: search ? 20 : 200,
 				}}
 				id={generateTracksListId('songs', search)}
-				tracks={filteredTracks}
+				tracks={[
+					{
+						id: '0',
+						url: 'https://res.cloudinary.com/phuockaito/video/upload/v1657265009/audio/ox6fb6rwkhrcabcjbm6x.mp3', // Load media from the network
+						title: 'Alone',
+						artist: 'Alan Walker',
+						album: 'while(1<2)',
+						genre: 'Progressive House, Electro House',
+						date: '2014-05-20T07:00:00+00:00', // RFC 3339
+						artwork:
+							'https://res.cloudinary.com/phuockaito/image/upload/v1657265008/image_music/wg1aq20dyvoei3xxitg2.jpg', // Load artwork from the network,
+						duration: 160,
+					},
+					{
+						id: '1',
+						url: 'https://res.cloudinary.com/phuockaito/video/upload/v1657265329/audio/kqmkumgyxjq8209c6in7.mp3', // Load media from the network
+						title: 'Spectre',
+						artist: 'Alan Walker',
+						album: 'while(1<2)',
+						genre: 'Progressive House, Electro House',
+						date: '2014-05-20T07:00:00+00:00', // RFC 3339
+						artwork:
+							'https://res.cloudinary.com/phuockaito/image/upload/v1657265328/image_music/s9rsahac0duv6fiydulb.jpg', // Load artwork from the network
+						duration: 320,
+					},
+				]}
 				scrollEnabled={true}
 				search={search}
 			/>

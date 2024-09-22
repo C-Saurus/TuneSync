@@ -1,5 +1,5 @@
-import davIcon from '@/assets/icons/dav.png'
-import localIcon from '@/assets/icons/local.png'
+import davIcon from '@/assets/icons/dav.jpg'
+import localIcon from '@/assets/icons/local.jpg'
 import useThemeColor from '@/hooks/useThemeColor'
 import { useCurrentClientStore, useDatasourceConfig, useIndexStore } from '@/store/library'
 import { FontAwesome6, MaterialIcons } from '@expo/vector-icons'
@@ -40,10 +40,13 @@ const ResourceManage = () => {
 	const pickDirectory = useCallback(async () => {
 		try {
 			const result = await DocumentPicker.pickDirectory()
+			console.log('res', result)
 			setIndexingList([])
 			if (result) {
 				const directoryUri = decodeURIComponent(result.uri)
+				console.log('directoryUri', directoryUri)
 				const savingPath = 'myDevice' + getContentAfterFirstDocuments(directoryUri)
+				console.log('savingPath', savingPath)
 				const configs = datasourceConfig || ([] as any)
 				const currentLocal = configs?.find((el: { protocol: string }) => el.protocol === 'file')
 				let newChildren = [] as any
@@ -76,11 +79,12 @@ const ResourceManage = () => {
 					}
 
 					const newConfig = [...configs, localConfig] as any
-
+					console.log('newConfig', newConfig)
 					await readDirectoryFiles(directoryUri)
 					setDatasourceConfig(newConfig)
 				}
 				const finalIndxingList = newChildren.map((el: string) => {
+					console.log('el', el)
 					return {
 						basename: el.split('/').slice(0, -1).pop(),
 						filename: el,
@@ -90,7 +94,8 @@ const ResourceManage = () => {
 						title: el.split('/').slice(0, -1).pop(),
 					}
 				})
-
+				console.log('COME', finalIndxingList)
+				console.log(indexingList)
 				setIndexingList([...finalIndxingList, ...indexingList])
 				setNeedUpdate(true)
 			}
@@ -107,7 +112,7 @@ const ResourceManage = () => {
 	const readDirectoryFiles = async (directoryUri: string) => {
 		try {
 			const files = await RNFS.readDir(directoryUri)
-
+			console.log('files', files)
 			for (const file of files) {
 				const pickedFilePath = file.path
 

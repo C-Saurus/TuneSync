@@ -31,12 +31,12 @@ const App = () => {
 		onLoad: handleTrackPlayerLoaded,
 	})
 
-	const changeLanguage = (lang) => {
+	const changeLanguage = (lang: string) => {
 		i18n.changeLanguage(lang)
 	}
 	useEffect(() => {
 		changeLanguage(language)
-	}, [])
+	}, [language])
 	const { setToken } = useSpotofyAuthToken()
 	const { runAsync } = useRequest(getAccessToken, {
 		manual: true,
