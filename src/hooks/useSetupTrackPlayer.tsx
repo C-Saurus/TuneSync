@@ -1,7 +1,13 @@
 import { useEffect, useRef } from 'react'
-import TrackPlayer, { Capability, RatingType, RepeatMode } from 'react-native-track-player'
+import TrackPlayer, {
+	AppKilledPlaybackBehavior,
+	Capability,
+	RatingType,
+	RepeatMode,
+} from 'react-native-track-player'
 
 const setupPlayer = async () => {
+	console.log('setupPlayer', setupPlayer)
 	await TrackPlayer.setupPlayer({
 		maxCacheSize: 2048 * 200,
 	})
@@ -15,6 +21,10 @@ const setupPlayer = async () => {
 			Capability.SkipToPrevious,
 			Capability.Stop,
 		],
+		android: {
+			// This is the default behavior
+			appKilledPlaybackBehavior: AppKilledPlaybackBehavior.ContinuePlayback,
+		},
 	})
 
 	await TrackPlayer.setVolume(0.3) // not too loud

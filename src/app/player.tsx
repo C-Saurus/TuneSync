@@ -185,6 +185,11 @@ const PlayerScreen = () => {
 		content: () => {
 			return <PlaylistsList />
 		},
+		headerLeft: '',
+		headerRight: function (): React.ReactNode {
+			throw new Error('Function not implemented.')
+		},
+		allowDragging: false,
 	})
 	useEffect(() => {
 		if (!activeTrackObj?.formatedTitle) return

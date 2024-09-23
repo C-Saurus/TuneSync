@@ -24,7 +24,7 @@ const resources = {
 const languageDetector = {
 	type: 'languageDetector',
 	async: true,
-	detect: (callback) => {
+	detect: (callback: any) => {
 		const locales = RNLocalize.getLocales()
 		callback(locales[0].languageTag)
 	},
@@ -33,7 +33,7 @@ const languageDetector = {
 }
 
 i18n
-	.use(languageDetector)
+	.use(languageDetector as any)
 	.use(initReactI18next)
 	.init({
 		resources,

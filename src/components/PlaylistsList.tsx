@@ -36,7 +36,7 @@ export const PlaylistsList = () => {
 
 			if (activeTrack === item.title) {
 				await TrackPlayer.skipToNext()
-				TrackPlayer.play()
+				await TrackPlayer.play()
 			} else {
 				setNeedUpdate(true)
 			}
@@ -45,7 +45,7 @@ export const PlaylistsList = () => {
 	)
 	useEffect(() => {
 		const sync = debounce(async () => {
-			const has = queueListWithContent[activeQueueId].map((el) => el.title)
+			const has = queueListWithContent[activeQueueId].map((el: { title: any }) => el.title)
 			const queue = await TrackPlayer.getQueue()
 			const deletePending = queue
 				.map((el, index) => {
@@ -77,7 +77,7 @@ export const PlaylistsList = () => {
 							(el: { title: any }) => el.title === track.title,
 						)
 						await TrackPlayer.skip(index)
-						TrackPlayer.play()
+						await TrackPlayer.play()
 					}, 100)}
 				/>
 			)

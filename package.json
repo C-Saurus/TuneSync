@@ -12,7 +12,7 @@
     "@react-native-community/blur": "^4.4.0",
     "@react-native-menu/menu": "^0.9.1",
     "@react-native-picker/picker": "^2.7.7",
-    "ahooks": "^3.8.0",
+    "ahooks": "^3.8.1",
     "awesome-module": "link:./modules/awesome-module",
     "axios": "^1.6.8",
     "axios-retry": "^4.4.1",

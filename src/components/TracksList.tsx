@@ -35,30 +35,31 @@ export const TracksList = ({
 	const { playing } = useIsPlaying()
 	const handleTrackSelect = useCallback(
 		async (selectedTrack: Track) => {
-			//console.log('selectedTrack', selectedTrack)
 			setActiveTrack(selectedTrack)
 			const index = queueListWithContent[activeQueueId].findIndex(
 				(el: { title: string | undefined }) => el.title === selectedTrack.title,
 			)
-			console.log('index', index)
+
 			if (index === -1) {
 				const filteredList = queueListWithContent[activeQueueId].filter(
 					(el: { title: string | undefined }) => el.title !== selectedTrack.title,
 				)
 				setQueueListContent([...filteredList, selectedTrack], activeQueueId, queueListWithContent)
-				await TrackPlayer.add(selectedTrack)
+				await TrackPlayer.add([selectedTrack])
 
 				// await TrackPlayer.pause()
 				// await TrackPlayer.skip(queueListWithContent[activeQueueId].length - 1 || 0)
+				await TrackPlayer.load(selectedTrack)
 				await TrackPlayer.play()
 			} else {
 				//console.log('TrackPlayer', TrackPlayer)
 				try {
 					// await TrackPlayer.pause()
 					// await TrackPlayer.skip(index || 0)
+					await TrackPlayer.load(selectedTrack)
 					await TrackPlayer.play()
 				} catch (error) {
-					console.log('error', error)
+					console.log('[handleTrackSelect]', error)
 				}
 			}
 		},
@@ -86,12 +87,12 @@ export const TracksList = ({
 			style={{ paddingHorizontal: screenPaddingXs.horizontal }}
 			contentInsetAdjustmentBehavior="automatic"
 			data={tracks}
-			renderItem={renderItem}
+			renderItem={renderItem as any}
 			keyExtractor={(item, index) => `${item?.filename}${item.url}${item.etag}${index}`}
 			scrollEventThrottle={400}
 			onEndReachedThreshold={0.5}
 			removeClippedSubviews={true}
-			contentContainerStyle={{ paddingBottom: 100 }}
+			contentContainerStyle={{ paddingBottom: 100, marginTop: 80 }}
 			ListHeaderComponent={
 				!hideQueueControls ? (
 					<QueueControls tracks={tracks} style={{ paddingBottom: 20 }} />

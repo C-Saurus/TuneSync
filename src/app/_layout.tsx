@@ -27,6 +27,7 @@ const App = () => {
 	const handleTrackPlayerLoaded = useCallback(() => {
 		SplashScreen.hideAsync()
 	}, [])
+
 	useSetupTrackPlayer({
 		onLoad: handleTrackPlayerLoaded,
 	})
@@ -51,6 +52,7 @@ const App = () => {
 	useTrackPlayerEvents(
 		[Event.PlaybackState, Event.PlaybackTrackChanged],
 		debounce(async (event: { state: string }) => {
+			console.log('state', event.state)
 			if (event.state === 'playing') {
 				const track = await TrackPlayer.getActiveTrack()
 				const activeIndex = await TrackPlayer.getActiveTrackIndex()

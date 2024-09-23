@@ -16,7 +16,7 @@ import { Stack } from 'expo-router'
 import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { View } from 'react-native'
-import TrackPlayer from 'react-native-track-player'
+import TrackPlayer, { usePlaybackState } from 'react-native-track-player'
 let currentAbortController: AbortController | null = null
 const SongsScreenLayout = () => {
 	const { t } = useTranslation()
@@ -184,6 +184,10 @@ const SongsScreenLayout = () => {
 			}
 		}
 	}, [needUpdate, debouncedRefreshLibrary, isFocused, setNeedUpdate])
+	const playerState = usePlaybackState()
+	useEffect(() => {
+		console.log('playerState', playerState)
+	}, [playerState])
 	return (
 		<View style={defaultStyles.container}>
 			<Stack>
